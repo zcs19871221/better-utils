@@ -42,7 +42,10 @@ const convertMsNumber2Unit = (
   if (!Number.isInteger(time)) {
     return '';
   }
-  const findedIndex = bs<Config>(units, time, (ar, index) => ar[index].value);
+  let findedIndex = bs<Config>(units, time, (ar, index) => ar[index].value);
+  if (time !== units[findedIndex].value) {
+    findedIndex = Math.max(0, findedIndex - 1);
+  }
   const { name, value } = units[findedIndex];
   const timeNum = Math.floor(time / value);
   if (timeNum <= 0) {

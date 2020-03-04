@@ -10,10 +10,7 @@
     "noUnusedParameters": true,
     "strict": true,
     "baseUrl": ".",
-    "declaration": true,
-    "paths": {
-      "Src/*": ["./src/*"]
-    }
+    "declaration": true
   },
   "exclude": ["**/*.test.ts"],
   "include": ["src/**/*"]

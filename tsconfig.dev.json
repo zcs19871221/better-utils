@@ -12,11 +12,10 @@
     "strict": true,
     "baseUrl": ".",
     "declaration": true,
-    "noEmit": true,
     "paths": {
       "Src/*": ["./src/*"]
     }
   },
   "exclude": ["**/*.test.ts"],
-  "include": ["test/**/*", "src/**/*", "helloworld.ts"]
+  "include": ["test/**/*", "src/**/*"]
 }

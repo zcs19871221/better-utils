@@ -1,12 +1,12 @@
 /* eslint-disable no-plusplus,id-length,max-lines-per-function */
 
-const hasOwnProperty = require('./hasOwnProperty');
+import hasOwnProperty from './hasOwnProperty';
 
 describe('hasOwnProperty', () => {
   it('hasOwnProperty', () => {
     class Person {
       name: any;
-      constructor(name) {
+      constructor(name: any) {
         this.name = name;
       }
 
