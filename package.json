@@ -1,0 +1,40 @@
+{
+  "name": "better-request",
+  "version": "2.0.3",
+  "description": "node http request client",
+  "keywords": [
+    "frontend",
+    "node.js",
+    "node",
+    "httpclient",
+    "request",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zcs19871221/better-family/tree/master/better-request"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node ./node_modules/jest/bin/jest.js",
+    "watch": "tsc --watch",
+    "preversion": "npm run test && node ./bin/clean.js && npm run build",
+    "postversion": "node ./bin/copy.js && cd dist && npm publish"
+  },
+  "author": "zcs",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^13.7.0"
+  },
+  "browser": "Controller/node/index.js",
+  "main": "Controller/node/index.js",
+  "types": "Controller/node/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "better-fs": "^10.0.8",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.0",
+    "typescript": "^3.7.5"
+  }
+}
