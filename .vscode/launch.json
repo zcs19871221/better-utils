@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "current file",
+      "name": "node",
       "program": "${file}",
       "skipFiles": ["<node_internals>/**"]
     },
@@ -16,7 +16,19 @@
       "request": "launch",
       "name": "ts",
       "program": "${file}",
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+      "preLaunchTask": "compile",
+      "outFiles": ["${workspaceFolder}/test/dist/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts server",
+      "program": "${workspaceFolder}/src/index.ts",
+      "preLaunchTask": "compile",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "NODE_ENV": "development"
+      }
     }
   ]
 }

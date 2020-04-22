@@ -5,8 +5,8 @@
   "tasks": [
     {
       "type": "typescript",
-      "tsconfig": "tsconfig.dev.json",
-      "label": "debugCompile",
+      "tsconfig": "tsconfig.json",
+      "label": "compile",
       "problemMatcher": ["$tsc"],
       "group": {
         "kind": "build",
