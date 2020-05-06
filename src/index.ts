@@ -1,5 +1,6 @@
 export { default as bs } from './bs';
-export { default as deepCopy } from './deepCopy';
+export { default as deepCopy } from './getPrime';
+export { default as getPrime } from './deepCopy';
 export { default as deepEqual } from './deepEqual';
 export { default as ensureDo } from './ensureDo';
 export { default as escapeRegString } from './escapeRegString';
@@ -32,6 +33,7 @@ export {
   isEmptyObject,
 } from './type';
 export { default as uniq } from './uniq';
+export { default as genId } from './genId';
 export { default as formatDate } from './time/formatDate';
 export { default as ms2Unit } from './time/ms2Unit';
 export { default as wait } from './time/wait';
