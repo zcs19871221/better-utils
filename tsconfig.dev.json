@@ -4,14 +4,14 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "outDir": "dist",
+    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
-    "baseUrl": "./",
-    "declaration": true
+    "baseUrl": "./"
   },
   "exclude": ["**/*.test.ts", "dist"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "statistics/**/*"]
 }
