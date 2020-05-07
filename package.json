@@ -23,9 +23,6 @@
   },
   "author": "zcs",
   "license": "MIT",
-  "dependencies": {
-    "@types/node": "^13.7.0"
-  },
   "devDependencies": {
     "@types/jest": "^25.1.2",
     "better-fs": "^10.0.8",
