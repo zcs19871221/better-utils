@@ -16,9 +16,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "node ./node_modules/jest/bin/jest.js",
+    "test": "jest",
     "watch": "tsc --watch",
-    "preversion": "npm run test && node ./bin/clean.js && npm run build",
+    "preversion": "npm test && node ./bin/clean.js && npm run build",
     "postversion": "node ./bin/copy.js && cd dist && npm publish"
   },
   "author": "zcs",
