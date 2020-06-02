@@ -31,11 +31,9 @@ const units = config.reduce((acc: Config[], { name, value }) => {
   acc.push({ name, value });
   return acc;
 }, []);
-const convertMsNumber2Unit = (
-  time: number,
-  join = '又',
-  endUnit?: keyof typeof Unit,
-) => {
+const helper = (time: number,
+  join: string,
+  keepLen: number, times: number) => {
   if (time <= 1) {
     return `${time}${units[0].name}`;
   }
@@ -52,14 +50,16 @@ const convertMsNumber2Unit = (
     return `${value}${name}`;
   }
   let left = '';
-  if (time % value > 0) {
-    if (
-      !endUnit ||
-      findedIndex - 1 > units.findIndex(each => each.name === endUnit)
-    ) {
-      left += `${join}${convertMsNumber2Unit(time % value, join, endUnit)}`;
-    }
+  if (time % value > 0 && times < keepLen) {
+      left += `${join}${helper(time % value, join, keepLen, times + 1)}`;
   }
   return `${timeNum}${name}${left}`;
+}
+const convertMsNumber2Unit = (
+  time: number,
+  join: string = '又',
+  keepLen: number = 1,
+) => {
+  return helper(time, join, keepLen, 0)
 };
 export default convertMsNumber2Unit;

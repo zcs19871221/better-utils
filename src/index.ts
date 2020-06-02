@@ -1,6 +1,7 @@
 export { default as bs } from './bs';
-export { default as deepCopy } from './getPrime';
-export { default as getPrime } from './deepCopy';
+export { default as getPrime } from './getPrime';
+export { default as deepCopy } from './deepCopy';
+export { default as PriorityQueue } from './data_structure/priority_queue';
 export { default as deepEqual } from './deepEqual';
 export { default as ensureDo } from './ensureDo';
 export { default as escapeRegString } from './escapeRegString';
