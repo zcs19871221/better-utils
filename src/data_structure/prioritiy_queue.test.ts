@@ -24,9 +24,19 @@ it('priority queue', () => {
 })
 
 it('priority queue remove', () => {
-    const list = [1,100,3,105,106,7,8,200,201,202,203,9]
+    const list = [1, 100, 3, 105, 106, 7, 8, 200, 201, 202, 203, 9]
     const q = new PriorityQueue<number>(list)
     q.remove(105);
-    expect(q['stack']).toEqual([1,9,3,100,106,7,8,200,201,202,203])
-   
+    expect(q['stack']).toEqual([1, 9, 3, 100, 106, 7, 8, 200, 201, 202, 203])
+
+})
+it('priority comparator', () => {
+    const list = [-1, 4, 6, 8, -4, 6, -6, 3, -2, 3, -3, -8]
+    const q = new PriorityQueue<number>(list, (a, b) => Math.abs(b) - Math.abs(a) )
+    const result = []
+    while (!q.isEmpty()) {
+        result.push(q.poll())
+    }
+    expect(result).toEqual([8, -8, 6, 6, -6,-4,  4, 3, 3, -3, -2, -1])
+
 })
