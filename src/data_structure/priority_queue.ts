@@ -5,7 +5,7 @@ interface PriorityQueue<E> {
     peek(): E | null;
     poll(): E | null;
     remove(e: E): boolean;
-    size(): number;
+    size: number;
     isEmpty(): boolean;
 }
 
@@ -18,6 +18,7 @@ interface Comparator<E> {
 export default class PriorityQueueImpl<E> implements PriorityQueue<E> {
     private stack: E[] = [];
     private comparator: Comparator<E>;
+    size: number = 0;
     constructor();
     constructor(comparator: Comparator<E>);
     constructor(list: E[]);
@@ -40,17 +41,17 @@ export default class PriorityQueueImpl<E> implements PriorityQueue<E> {
 
 
     add(e: E) {
-        const last = this.stack.length;
-        this.stack.length += 1;
-        this.slipUp(last, e)
+        this.size += 1;
+        this.slipUp(this.size - 1, e)
         return true;
     }
 
     remove(e: E) {
         const pos = this.stack.indexOf(e)
         if (pos > -1) {
-            const last = this.stack[this.stack.length - 1];
-            this.stack.length -= 1;
+            const last = this.stack[this.size - 1];
+            this.size -= 1;
+            this.stack.length = this.size;
             this.slipDown(pos, last)
             if (this.stack[pos] === last) {
                 this.slipUp(pos, last)
@@ -61,13 +62,14 @@ export default class PriorityQueueImpl<E> implements PriorityQueue<E> {
     }
 
     poll() {
-        if (this.stack.length === 0) {
+        if (this.size === 0) {
             return null;
         }
         const e = this.stack[0];
-        const last = this.stack[this.stack.length - 1]
-        this.stack.length -= 1;
-        if (this.stack.length !== 0) {
+        const last = this.stack[this.size - 1]
+        this.size -= 1;
+        this.stack.length = this.size;
+        if (this.size !== 0) {
             this.slipDown(0, last)
         }
         return e;
@@ -75,31 +77,30 @@ export default class PriorityQueueImpl<E> implements PriorityQueue<E> {
 
 
     clear() {
-        this.stack.length = 0;
+        this.size = 0;
+        this.stack = []
     }
 
-    size() {
-        return this.stack.length;
-    }
+  
 
     contains(e: E) {
         return this.stack.includes(e)
     }
 
     peek() {
-        if (this.stack.length === 0) {
+        if (this.size === 0) {
             return null;
         }
         return this.stack[0];
     }
 
     isEmpty() {
-        return this.stack.length === 0;
+        return this.size === 0;
     }
 
     private slipUp(index: number, e: E) {
         while (index > 0) {
-            const parentIndex = this.getParentIndex(index)
+            const parentIndex = (index - (index % 2 === 0 ? 2 : 1)) / 2
             const parent = this.stack[parentIndex]
             if (this.comparator(e, parent) >= 0) {
                 break;
@@ -111,24 +112,12 @@ export default class PriorityQueueImpl<E> implements PriorityQueue<E> {
     }
 
 
-    private getParentIndex(index: number) {
-        if (index % 2 === 0) {
-            return (index - 2) / 2;
-        }
-        return (index - 1) / 2
-    }
-
-    private getLastNonLeafIndex() {
-        return Math.floor(this.stack.length / 2)
-    }
-
 
     private slipDown(index: number, e: E) {
-        const lastNoneLeafIndex = this.getLastNonLeafIndex()
-        while (index < lastNoneLeafIndex) {
+        while (index < Math.floor(this.size / 2)) {
             let child = index * 2 + 1;
             const right = child + 1;
-            if (right < this.stack.length && this.comparator(this.stack[child], this.stack[right]) > 0) {
+            if (right < this.size && this.comparator(this.stack[child], this.stack[right]) > 0) {
                 child = right;
             }
             if (this.comparator(e, this.stack[child]) < 0) {
