@@ -33,7 +33,6 @@ export default class PriorityQueueImpl<E> implements PriorityQueue<E> {
       listOrComparator.forEach(e => {
         this.add(e);
       });
-      console.log(this.stack);
     } else if (typeof listOrComparator === 'function') {
       this.comparator = listOrComparator;
     }
