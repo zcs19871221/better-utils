@@ -12,6 +12,8 @@ export { default as mockUuid } from './mockUuid';
 export { default as pipe } from './pipe';
 export { default as random } from './random';
 export { default as concurrentPool } from './concurrentPool';
+export { default as LRUCache } from './lrucache';
+export { default as probability } from './probability';
 export {
   isNumber,
   isInteger,
