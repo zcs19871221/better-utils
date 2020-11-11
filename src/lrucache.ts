@@ -23,7 +23,6 @@ class DoubleLink {
   }
 
   getValue() {
-    this.updateModify();
     return this.value;
   }
 

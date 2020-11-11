@@ -28,3 +28,14 @@ it('lru with 2 second persist', () => {
     }, 1500);
   }, 1500);
 });
+
+it('lru persisit outtdate', () => {
+  const lru = new LRUCache(1, 1000);
+  lru.put(1, 1);
+  setTimeout(() => {
+    lru.get(1);
+  }, 800);
+  setTimeout(() => {
+    expect(lru.get(1)).toBe(null);
+  }, 1500);
+});
