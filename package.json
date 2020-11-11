@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "clear": "jest --clearCache",
     "test": "jest",
     "watch": "tsc --watch",
     "preversion": "npm test && node ./bin/clean.js && npm run build",

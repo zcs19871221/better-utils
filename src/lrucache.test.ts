@@ -1,4 +1,5 @@
 import LRUCache from './lrucache';
+import wait from './time/wait';
 
 it('lru', () => {
   const lru = new LRUCache(2);
@@ -29,13 +30,11 @@ it('lru with 2 second persist', () => {
   }, 1500);
 });
 
-it('lru persisit outtdate', () => {
-  const lru = new LRUCache(1, 1000);
-  lru.put(1, 1);
-  setTimeout(() => {
-    lru.get(1);
-  }, 800);
-  setTimeout(() => {
-    expect(lru.get(1)).toBe(null);
-  }, 1500);
+it('lru persisit outtdate', async () => {
+  const lru = new LRUCache(1, 200);
+  lru.put(1, 'value');
+  await wait(100);
+  expect(lru.get(1)).toBe('value');
+  await wait(200);
+  expect(lru.get(1)).toBe(null);
 });
